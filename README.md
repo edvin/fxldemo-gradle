@@ -1,4 +1,4 @@
-# QuickStart Demo Application for FXLauncher
+# Gradle QuickStart Demo Application for FXLauncher
 
 This example showcases how to configure [FXLauncher](https://github.com/edvin/fxlauncher) in your
 Gradle based application to provide automatic updates optionally in combination with native installers.
