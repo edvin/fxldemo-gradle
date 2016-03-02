@@ -59,13 +59,13 @@ task copyDependencies {
 task generateAppManifest(type: JavaExec) {
     main = 'fxlauncher.CreateManifest'
     classpath = sourceSets.main.runtimeClasspath
-    args = [appUrl, appMainClass, 'build/libs']
+    args = [appUrl, appMainClass, 'build/libs', appParameters]
 }
 
 task embedAppManifest(type: Exec) {
     mustRunAfter 'generateAppManifest'
     workingDir 'build/libs'
-    commandLine 'jar', 'uf', 'fxlauncher.jar', 'app.xml', appParameters
+    commandLine 'jar', 'uf', 'fxlauncher.jar', 'app.xml'
 }
 
 task installer(type: Exec, dependsOn: 'buildApp') {
