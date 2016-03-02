@@ -27,6 +27,9 @@ def appFilename = 'FxlDemo'
 // The JavaFX Application class name
 def appMainClass = 'no.tornado.FxlDemo'
 
+// Optional parameters to the application, will be embedded in the launcher and can be overriden on the command line
+def appParameters = '--myOption=myValue --myOtherOption=myOtherValue'
+
 // The Application vendor used by javapackager
 def appVendor = 'AcmeInc'
 
