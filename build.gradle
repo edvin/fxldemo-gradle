@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    compile 'no.tornado:fxlauncher:1.0.8'
+    compile 'no.tornado:fxlauncher:1.0.7'
     compile 'org.controlsfx:controlsfx:8.40.10'
 }
 
@@ -25,9 +25,6 @@ def appFilename = 'FxlDemo'
 
 // The JavaFX Application class name
 def appMainClass = 'no.tornado.FxlDemo'
-
-// Optional parameters to the application, will be embedded in the launcher and can be overriden on the command line
-def appParameters = '--myOption=myValue --myOtherOption=myOtherValue'
 
 // The Application vendor used by javapackager
 def appVendor = 'AcmeInc'
@@ -59,7 +56,7 @@ task copyDependencies {
 task generateAppManifest(type: JavaExec) {
     main = 'fxlauncher.CreateManifest'
     classpath = sourceSets.main.runtimeClasspath
-    args = [appUrl, appMainClass, 'build/libs', appParameters]
+    args = [appUrl, appMainClass, 'build/libs']
 }
 
 task embedAppManifest(type: Exec) {
