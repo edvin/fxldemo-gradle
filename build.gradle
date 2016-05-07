@@ -29,6 +29,9 @@ def appMainClass = 'no.tornado.FxlDemo'
 // Optional override to specify where the cached files are stored. Default is current working directory
 def cacheDir = 'USERLIB/FxlDemo'
 
+// Optional parameters to the application, will be embedded in the launcher and can be overriden on the command line
+def appParameters = '--myOption=myValue --myOtherOption=myOtherValue'
+
 // The Application vendor used by javapackager
 def appVendor = 'AcmeInc'
 
@@ -59,6 +62,7 @@ task copyDependencies {
 task generateAppManifest(type: JavaExec) {
     main = 'fxlauncher.CreateManifest'
     classpath = sourceSets.main.runtimeClasspath
+    args = [appUrl, appMainClass, 'build/libs', appParameters]
     args = [appUrl, appMainClass, 'build/libs', '--cache-dir=' + cacheDir]
 }
 
