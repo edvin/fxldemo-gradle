@@ -62,8 +62,7 @@ task copyDependencies {
 task generateAppManifest(type: JavaExec) {
     main = 'fxlauncher.CreateManifest'
     classpath = sourceSets.main.runtimeClasspath
-    args = [appUrl, appMainClass, 'build/libs', appParameters]
-    args = [appUrl, appMainClass, 'build/libs', '--cache-dir=' + cacheDir]
+    args = [appUrl, appMainClass, 'build/libs', '--cache-dir=' + cacheDir, appParameters]
 }
 
 task embedAppManifest(type: Exec) {
