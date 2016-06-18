@@ -76,5 +76,6 @@ task installer(type: Exec, dependsOn: 'buildApp') {
 }
 
 task deployApp(type: Exec) {
-    commandLine 'scp', '-r', 'build/libs', appDeployTarget
+    workingDir 'build/libs'
+    commandLine 'scp', '-r', '.', appDeployTarget
 }
