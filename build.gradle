@@ -75,7 +75,7 @@ task installer(type: Exec, dependsOn: 'buildApp') {
     commandLine 'javapackager', '-deploy', '-native', '-outdir', 'installer', '-outfile', appFilename, '-srcdir', 'build/libs', '-srcfiles', 'fxlauncher.jar', '-appclass', 'fxlauncher.Launcher', '-name', "${rootProject.name}", '-title', "${rootProject.name}", '-vendor', "$appVendor", "-identifier", "${rootProject.group}.${appFilename}", '-Bidentifier=' + project.group + '.' + appFilename, '-BappVersion=' + appVersion
 }
 
-task deployApp(type: Exec) {
+task deployApp(type: Exec, dependsOn: 'embedAppManifest') {
     workingDir 'build/libs'
     commandLine 'scp', '-r', '.', appDeployTarget
 }
