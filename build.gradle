@@ -1,81 +1,30 @@
-/**
- * FXLauncher build targets
- *
- * - buildApp: Assembles the application into build/libs
- * - deployApp: Transfers application to appDeployTarget via scp
- * - installer: Generates native installer
- */
-
 group 'no.tornado'
 version '1.0'
 
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'no.tornado.fxlauncher:fxlauncher-gradle-plugin:1.0.11'
+    }
+}
+
 apply plugin: 'java'
+apply plugin: 'no.tornado.fxlauncher'
+
+fxlauncher {
+    applicationVendor 'My Company'
+    applicationUrl 'http://fxldemo.tornado.no/'
+    applicationMainClass 'no.tornado.FxlDemo'
+    deployTarget 'w48839@fxldemo.tornado.no:fxldemo'
+}
 
 repositories {
+    mavenLocal()
     mavenCentral()
 }
 
 dependencies {
-    compile 'no.tornado:fxlauncher:1.0.11'
-    compile 'org.controlsfx:controlsfx:8.40.10'
-}
-
-// Installer Filename without suffix
-def appFilename = 'FxlDemo'
-
-// The JavaFX Application class name
-def appMainClass = 'no.tornado.FxlDemo'
-
-// Optional override to specify where the cached files are stored. Default is current working directory
-def cacheDir = 'USERLIB/FxlDemo'
-
-// Optional parameters to the application, will be embedded in the launcher and can be overriden on the command line
-def appParameters = '--myOption=myValue --myOtherOption=myOtherValue'
-
-// The Application vendor used by javapackager
-def appVendor = 'AcmeInc'
-
-// The Application version used by javapackager
-def appVersion = '2.0'
-
-// Base URL where you will host the application artifacts
-def appUrl = 'http://fxldemo.tornado.no/'
-
-// Optional scp target for application artifacts hosted at the above url
-def appDeployTarget = 'w48839@fxldemo.tornado.no:fxldemo'
-
-jar.archiveName = "fxldemo.jar"
-
-task buildApp(dependsOn: ['copyDependencies', 'generateAppManifest', 'embedAppManifest'])
-
-task copyDependencies {
-    dependsOn jar
-    configurations.runtime.resolvedConfiguration.resolvedArtifacts.each { artifact ->
-        project.copy {
-            from artifact.file
-            into 'build/libs'
-            rename { "${artifact.name}.${artifact.extension}" }
-        }
-    }
-}
-
-task generateAppManifest(type: JavaExec) {
-    main = 'fxlauncher.CreateManifest'
-    classpath = sourceSets.main.runtimeClasspath
-    args = [appUrl, appMainClass, 'build/libs', '--cache-dir=' + cacheDir, appParameters]
-}
-
-task embedAppManifest(type: Exec) {
-    mustRunAfter 'generateAppManifest'
-    workingDir 'build/libs'
-    commandLine 'jar', 'uf', 'fxlauncher.jar', 'app.xml'
-}
-
-task installer(type: Exec, dependsOn: 'buildApp') {
-    commandLine 'javapackager', '-deploy', '-native', '-outdir', 'installer', '-outfile', appFilename, '-srcdir', 'build/libs', '-srcfiles', 'fxlauncher.jar', '-appclass', 'fxlauncher.Launcher', '-name', "${rootProject.name}", '-title', "${rootProject.name}", '-vendor', "$appVendor", "-Bidentifier", "${rootProject.group}.${appFilename}", '-Bidentifier=' + project.group + '.' + appFilename, '-BappVersion=' + appVersion
-}
-
-task deployApp(type: Exec, dependsOn: 'embedAppManifest') {
-    workingDir 'build/libs'
-    commandLine 'scp', '-r', '.', appDeployTarget
+    compile 'org.controlsfx:controlsfx:8.40.11'
 }
