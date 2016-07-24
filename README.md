@@ -5,7 +5,7 @@ Gradle based application to provide automatic updates optionally in combination 
 
 Please see [build.gradle](/build.gradle) for more information.
 
-**Note**: There is nothing Gradle spesific about FXLauncher, and these operations should be easy to perform in any build system.
+**Note**: Even though FXLauncher has a Gradle plugin, there is nothing Gradle spesific about it, and these operations should be easy to perform in any build system.
 	There is also a [Maven version](https://github.com/edvin/fxldemo) of this project.
 
 ## Operations
