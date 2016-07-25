@@ -33,8 +33,8 @@ for Windows, MacOSX and Linux.
 
 ### Deploy to Amazon S3
 
-The built in `deployApp` task will only deploy using scp. If you want to deploy to Amazy, you can include this task in your build. Make sure
-you run the `embedApplicationManifest` before this task.
+The built in `deployApp` task will only deploy using scp. If you want to deploy to Amazon S3, you can include this task in your build. Make sure
+you run the `embedApplicationManifest` first.
 
 ```groovy
 task deployS3(type: Exec) {
