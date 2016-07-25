@@ -36,9 +36,11 @@ for Windows, MacOSX and Linux.
 The built in `deployApp` task will only deploy using scp. If you want to deploy to Amazy, you can include this task in your build. Make sure
 you run the `embedApplicationManifest` before this task.
 
+```groovy
 task deployS3(type: Exec) {
     // You need to have installed AWS command line interface: https://aws.amazon.com/cli/
     commandLine 'aws', 'configure', 'set', 'aws_access_key_id', 'your_access_key_id'
     commandLine 'aws', 'configure', 'set', 'aws_secret_access_key', 'your_secret_access_key'
     commandLine 'aws', 's3', 'cp', 'build/libs', appDeployTarget, '--acl', 'public-read', '--recursive', '--region', 'us-west-1'
 }
+```
