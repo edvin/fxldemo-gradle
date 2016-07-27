@@ -30,3 +30,17 @@ See [build.gradle](/build.gradle) for configuration options.
 
 See http://fxldemo.tornado.no for a prebuilt version of this application, including native installers
 for Windows, MacOSX and Linux.
+
+### Deploy to Amazon S3
+
+The built in `deployApp` task will only deploy using scp. If you want to deploy to Amazon S3, you can include this task in your build. Make sure
+you run the `embedApplicationManifest` first.
+
+```groovy
+task deployS3(type: Exec) {
+    // You need to have installed AWS command line interface: https://aws.amazon.com/cli/
+    commandLine 'aws', 'configure', 'set', 'aws_access_key_id', 'your_access_key_id'
+    commandLine 'aws', 'configure', 'set', 'aws_secret_access_key', 'your_secret_access_key'
+    commandLine 'aws', 's3', 'cp', 'build/libs', appDeployTarget, '--acl', 'public-read', '--recursive', '--region', 'us-west-1'
+}
+```
