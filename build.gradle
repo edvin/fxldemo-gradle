@@ -6,7 +6,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'no.tornado:fxlauncher-gradle-plugin:1.0.11.2'
+        classpath 'no.tornado:fxlauncher-gradle-plugin:1.0.12'
     }
 }
 
@@ -17,6 +17,7 @@ fxlauncher {
     applicationVendor 'My Company'
     applicationUrl 'http://fxldemo.tornado.no/'
     applicationMainClass 'no.tornado.FxlDemo'
+    acceptDowngrade false
     deployTarget 'w48839@fxldemo.tornado.no:fxldemo'
 }
 
