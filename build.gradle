@@ -6,7 +6,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'no.tornado:fxlauncher-gradle-plugin:1.0.12'
+        classpath 'no.tornado:fxlauncher-gradle-plugin:1.0.14'
     }
 }
 
