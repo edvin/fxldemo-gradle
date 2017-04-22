@@ -6,7 +6,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'no.tornado:fxlauncher-gradle-plugin:1.0.15'
+        classpath 'no.tornado:fxlauncher-gradle-plugin:1.0.16'
     }
 }
 
@@ -27,5 +27,5 @@ repositories {
 }
 
 dependencies {
-    compile 'org.controlsfx:controlsfx:8.40.11'
+    compile 'org.controlsfx:controlsfx:8.40.12'
 }
