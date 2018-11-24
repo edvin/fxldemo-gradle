@@ -15,9 +15,11 @@ apply plugin: 'no.tornado.fxlauncher'
 
 fxlauncher {
     applicationVendor 'My Company'
+    // Base URL where you will host the application artifacts
     applicationUrl 'http://fxldemo.tornado.no/'
     applicationMainClass 'no.tornado.FxlDemo'
     acceptDowngrade false
+    // Optional scp target for application artifacts hosted at the above url
     deployTarget 'w48839@fxldemo.tornado.no:fxldemo'
 }
 
