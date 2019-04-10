@@ -41,6 +41,6 @@ task deployS3(type: Exec) {
     // You need to have installed AWS command line interface: https://aws.amazon.com/cli/
     commandLine 'aws', 'configure', 'set', 'aws_access_key_id', 'your_access_key_id'
     commandLine 'aws', 'configure', 'set', 'aws_secret_access_key', 'your_secret_access_key'
-    commandLine 'aws', 's3', 'cp', 'build/libs', appDeployTarget, '--acl', 'public-read', '--recursive', '--region', 'us-west-1'
+    commandLine 'aws', 's3', 'cp', 'build/fxlauncher', 's3://<your bucket>', '--acl', 'public-read', '--recursive', '--region', 'us-west-1'
 }
 ```
